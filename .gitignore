@@ -1,0 +1,58 @@
+# Ignore build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Dd]ist/
+[Dd]istPublic/
+Release/
+ReleasePublic/
+x64/
+x86/
+[Aa]rtefacts/
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.userprefs
+.idea/
+.vscode/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows Installer Patch files
+*.wixpdb
+
+# JetBrains Rider
+.idea/
+
+# User-specific files
+.vscode/
+
+# OS generated files
+Thumbs.db
+Desktop.ini
+
+# ASP.NET
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# .NET Core
+project.json
+
+# VS for Mac
+.vscode/
+.vscode/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Microsoft Azure Functions
+local.settings.json
