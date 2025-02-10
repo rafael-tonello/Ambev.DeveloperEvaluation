@@ -1,5 +1,6 @@
 # Ignore build results
 [Dd]ebug/
+[Oo]bject/
 [Dd]ebugPublic/
 [Dd]ist/
 [Dd]istPublic/
@@ -7,6 +8,7 @@ Release/
 ReleasePublic/
 x64/
 x86/
+obj/
 [Aa]rtefacts/
 
 # User-specific files
@@ -31,6 +33,7 @@ x86/
 
 # User-specific files
 .vscode/
+.vs/
 
 # OS generated files
 Thumbs.db
@@ -47,6 +50,7 @@ project.json
 # VS for Mac
 .vscode/
 .vscode/
+
 
 # Windows Installer files
 *.cab
