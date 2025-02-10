@@ -8,7 +8,7 @@ using MediatR.NotificationPublishers;
 
 namespace Ambev.DeveloperEvaluation.Domain.Entities
 {
-    internal class Product
+    public class Product
     {
         public int Id { get; set; }
         public string Name { get; set; } = "";
