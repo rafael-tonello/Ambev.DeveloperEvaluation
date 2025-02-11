@@ -11,6 +11,9 @@ x86/
 obj/
 [Aa]rtefacts/
 
+#log files
+logs/
+
 # User-specific files
 *.user
 *.userosscache
