@@ -5,10 +5,8 @@ namespace Ambev.DeveloperEvaluation.Application.CompanyBranch.Delete
 {
     public class DeleteCompanyBranchCommand: IRequest<DeleteCompanyBranchResult>
     {
-        public int Id { get; set; }
-        public string Name { get; set; } = "";
-        public string Address { get; set; } = "";
-
+        public Guid Id { get; set; }
+        
         public ValidationResultDetail Validate()
         {
             var result = new DeleteCompanyBranchCommandValidator().Validate(this);

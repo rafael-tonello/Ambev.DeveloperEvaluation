@@ -6,7 +6,6 @@ namespace Ambev.DeveloperEvaluation.Application.CompanyBranch.Get
     public class GetCompanyBranchCommand: IRequest<GetCompanyBranchResult>
     {
         public Guid Id { get; set; }
-        
 
         public ValidationResultDetail Validate()
         {
