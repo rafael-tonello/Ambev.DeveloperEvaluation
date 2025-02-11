@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ambev.DeveloperEvaluation.Common.Validation;
+using Ambev.DeveloperEvaluation.Domain.Common;
 using MediatR.NotificationPublishers;
 
 namespace Ambev.DeveloperEvaluation.Domain.Entities
 {
-    public class Product
+    public class Product: BaseEntity
     {
-        public int Id { get; set; }
         public string Name { get; set; } = "";
         public string Description { get; set; } = "";
         public double Price { get; set; }

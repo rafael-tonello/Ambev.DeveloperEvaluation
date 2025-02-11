@@ -27,7 +27,7 @@ namespace Ambev.DeveloperEvaluation.Application.CompanyBranch.Create
 
             var toSave = _mapper.Map<Domain.Entities.CompanyBranch>(commandRequest);
 
-            toSave.Id = new Random(DateTime.Now.Millisecond).Next();
+            toSave.Id = Guid.NewGuid();
 
             var saved = await _companyBranchRepository.CreateAsync(toSave, cancellationToken);
 

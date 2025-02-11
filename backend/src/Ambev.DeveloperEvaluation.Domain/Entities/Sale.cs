@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ambev.DeveloperEvaluation.Common.Validation;
+using Ambev.DeveloperEvaluation.Domain.Common;
 
 namespace Ambev.DeveloperEvaluation.Domain.Entities
 {
-    public class Sale
+    public class Sale: BaseEntity
     {
-        public int Id { get; set; }
-
         public DateTime DateTime { get; set; }
 
         public double GrossValue { get; set; }

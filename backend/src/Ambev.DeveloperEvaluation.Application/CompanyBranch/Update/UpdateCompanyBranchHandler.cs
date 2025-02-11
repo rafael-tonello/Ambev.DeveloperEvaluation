@@ -27,8 +27,6 @@ namespace Ambev.DeveloperEvaluation.Application.CompanyBranch.Update
 
             var toSave = _mapper.Map<Domain.Entities.CompanyBranch>(commandRequest);
 
-            toSave.Id = new Random(DateTime.Now.Millisecond).Next();
-
             var saved = await _companyBranchRepository.UpdateAsync(toSave, cancellationToken);
 
             return _mapper.Map<UpdateCompanyBranchResult>(saved);
