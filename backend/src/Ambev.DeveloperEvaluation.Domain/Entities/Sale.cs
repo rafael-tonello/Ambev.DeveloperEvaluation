@@ -18,11 +18,17 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
 
         public double FinalValue { get; set; }
 
-        public int CompanyBranchId { get; set; }
+        public Guid CompanyBranchId { get; set; }
 
-        public int CustomerId { get; set; }
+        public Guid CustomerId { get; set; }
 
         public bool Cancelled { get; set; }
+
+        public virtual Customer Customer {get; set; }
+
+        public virtual CompanyBranch CompanyBranch {get; set; }
+
+        public virtual List<SaleProd> Items { get; set; }
 
         public ValidationResultDetail Validate()
         {
