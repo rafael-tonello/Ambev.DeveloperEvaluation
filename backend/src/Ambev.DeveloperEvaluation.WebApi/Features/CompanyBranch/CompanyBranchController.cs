@@ -121,7 +121,7 @@ public class CompanyBranchController : BaseController
         });
     }
 
-    [HttpGet]
+    [HttpGet("all")]
     [ProducesResponseType(typeof(ApiResponseWithData<List<ListCompanyBranchResponse>>), StatusCodes.Status200OK)]
     public async Task<IActionResult> ListCustomers(CancellationToken cancellationToken)
     {

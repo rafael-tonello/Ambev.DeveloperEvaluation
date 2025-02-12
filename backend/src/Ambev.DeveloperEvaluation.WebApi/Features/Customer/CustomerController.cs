@@ -8,6 +8,8 @@ using Ambev.DeveloperEvaluation.WebApi.Features.Customers.GetCustomer;
 using Ambev.DeveloperEvaluation.Application.Customer.Get;
 using Ambev.DeveloperEvaluation.WebApi.Features.Customers.DeleteCustomer;
 using Ambev.DeveloperEvaluation.Application.Customer.Delete;
+using Ambev.DeveloperEvaluation.Application.CompanyBranch.List;
+using Ambev.DeveloperEvaluation.WebApi.Features.Customers.ListCustomer;
 
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Customer;
 
@@ -116,6 +118,21 @@ public class CustomerController : BaseController
         {
             Success = true,
             Message = "Sucess",
+        });
+    }
+
+    [HttpGet("search")]
+    [ProducesResponseType(typeof(ApiResponseWithData<List<ListCustomerResponse>>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> ListCustomers(CancellationToken cancellationToken)
+    {
+        var command = new ListCompanyBranchCommand();
+        var response = await _mediator.Send(command, cancellationToken);
+
+        return new JsonResult(new ApiResponseWithData<List<ListCustomerResponse>>
+        {
+            Success = true,
+            Message = "Customers retrieved successfully",
+            Data = _mapper.Map<List<ListCustomerResponse>>(response)
         });
     }
 }

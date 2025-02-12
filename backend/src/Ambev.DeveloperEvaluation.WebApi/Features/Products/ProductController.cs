@@ -8,6 +8,8 @@ using Ambev.DeveloperEvaluation.WebApi.Features.Products.GetProduct;
 using Ambev.DeveloperEvaluation.Application.Product.Get;
 using Ambev.DeveloperEvaluation.WebApi.Features.Products.DeleteProduct;
 using Ambev.DeveloperEvaluation.Application.Product.Delete;
+using Ambev.DeveloperEvaluation.WebApi.Features.Products.ListProduct;
+using Ambev.DeveloperEvaluation.Application.Product.List;
 
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Product;
 
@@ -116,6 +118,29 @@ public class ProductController : BaseController
         {
             Success = true,
             Message = "Sucess",
+        });
+    }
+
+    [HttpGet("search")]
+    [ProducesResponseType(typeof(ApiResponseWithData<List<ListProductResponse>>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> ListCustomers([FromQuery(Name = "q")] string q, CancellationToken cancellationToken)
+    {
+        var request = new ListProductRequest { Name = q };
+
+        var validator = new ListProductRequestValidator();
+        var validationResult = await validator.ValidateAsync(request, cancellationToken);
+
+        if (!validationResult.IsValid)
+            return BadRequest(validationResult.Errors);
+
+        var command = _mapper.Map<ListProductCommand>(request);
+        var response = await _mediator.Send(command, cancellationToken);
+
+        return new JsonResult(new ApiResponseWithData<List<ListProductResponse>>
+        {
+            Success = true,
+            Message = "Retrieved successfully",
+            Data = _mapper.Map<List<ListProductResponse>>(response)
         });
     }
 }
