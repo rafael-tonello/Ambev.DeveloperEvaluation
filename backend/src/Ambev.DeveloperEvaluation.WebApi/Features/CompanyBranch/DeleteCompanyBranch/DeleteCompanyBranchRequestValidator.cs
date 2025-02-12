@@ -14,6 +14,6 @@ public class DeleteCompanyBranchRequestValidator : AbstractValidator<DeleteCompa
     {
         RuleFor(x => x.Id)
             .NotEmpty()
-            .WithMessage("Company branch ID is required");
+            .WithMessage("ID is required");
     }
 }

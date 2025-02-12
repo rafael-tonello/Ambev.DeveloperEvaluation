@@ -14,6 +14,6 @@ public class GetCompanyBranchRequestValidator : AbstractValidator<GetCompanyBran
     {
         RuleFor(x => x.Id)
             .NotEmpty()
-            .WithMessage("Company branch ID is required");
+            .WithMessage("ID is required");
     }
 }

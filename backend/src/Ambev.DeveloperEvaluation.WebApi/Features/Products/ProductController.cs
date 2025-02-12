@@ -2,31 +2,31 @@
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using Ambev.DeveloperEvaluation.WebApi.Common;
-using Ambev.DeveloperEvaluation.WebApi.Features.CompanyBranchs.CreateCompanyBranch;
-using Ambev.DeveloperEvaluation.Application.CompanyBranch.Create;
-using Ambev.DeveloperEvaluation.WebApi.Features.CompanyBranchs.GetCompanyBranch;
-using Ambev.DeveloperEvaluation.Application.CompanyBranch.Get;
-using Ambev.DeveloperEvaluation.WebApi.Features.CompanyBranchs.DeleteCompanyBranch;
-using Ambev.DeveloperEvaluation.Application.CompanyBranch.Delete;
+using Ambev.DeveloperEvaluation.WebApi.Features.Products.CreateProduct;
+using Ambev.DeveloperEvaluation.Application.Product.Create;
+using Ambev.DeveloperEvaluation.WebApi.Features.Products.GetProduct;
+using Ambev.DeveloperEvaluation.Application.Product.Get;
+using Ambev.DeveloperEvaluation.WebApi.Features.Products.DeleteProduct;
+using Ambev.DeveloperEvaluation.Application.Product.Delete;
 
-namespace Ambev.DeveloperEvaluation.WebApi.Features.CompanyBranch;
+namespace Ambev.DeveloperEvaluation.WebApi.Features.Product;
 
 /// <summary>
 /// Controller for managing company branches operations
 /// </summary>
 [ApiController]
 [Route("api/[controller]")]
-public class CompanyBranchController : BaseController
+public class ProductController : BaseController
 {
     private readonly IMediator _mediator;
     private readonly IMapper _mapper;
 
     /// <summary>
-    /// Initializes a new instance of CompanyBranchController
+    /// Initializes a new instance of ProductController
     /// </summary>
     /// <param name="mediator">The mediator instance</param>
     /// <param name="mapper">The AutoMapper instance</param>
-    public CompanyBranchController(IMediator mediator, IMapper mapper)
+    public ProductController(IMediator mediator, IMapper mapper)
     {
         _mediator = mediator;
         _mapper = mapper;
@@ -35,58 +35,58 @@ public class CompanyBranchController : BaseController
     /// <summary>
     /// Creates a new Compan yBranch
     /// </summary>
-    /// <param name="request">The CompanyBranch creation request</param>
+    /// <param name="request">The Product creation request</param>
     /// <param name="cancellationToken">Cancellation token</param>
-    /// <returns>The created CompanyBranch details</returns>
+    /// <returns>The created Product details</returns>
     [HttpPost]
-    [ProducesResponseType(typeof(ApiResponseWithData<CreateCompanyBranchResponse>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ApiResponseWithData<CreateProductResponse>), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> CreateCompanyBranch([FromBody] CreateCompanyBranchRequest request, CancellationToken cancellationToken)
+    public async Task<IActionResult> CreateProduct([FromBody] CreateProductRequest request, CancellationToken cancellationToken)
     {
-        var validator = new CreateCompanyBranchRequestValidator();
+        var validator = new CreateProductRequestValidator();
         var validationResult = await validator.ValidateAsync(request, cancellationToken);
 
         if (!validationResult.IsValid)
             return BadRequest(validationResult.Errors);
 
-        var command = _mapper.Map<CreateCompanyBranchCommand>(request);
+        var command = _mapper.Map<CreateProductCommand>(request);
         var response = await _mediator.Send(command, cancellationToken);
 
-        return Created(string.Empty, new ApiResponseWithData<CreateCompanyBranchResponse>
+        return Created(string.Empty, new ApiResponseWithData<CreateProductResponse>
         {
             Success = true,
             Message = "Sucess",
-            Data = _mapper.Map<CreateCompanyBranchResponse>(response)
+            Data = _mapper.Map<CreateProductResponse>(response)
         });
     }
 
     /// <summary>
     /// Retrieves a company branch by their ID
     /// </summary>
-    /// <param name="id">The unique identifier of the CompanyBranch</param>
+    /// <param name="id">The unique identifier of the Product</param>
     /// <param name="cancellationToken">Cancellation token</param>
-    /// <returns>The CompanyBranch details if found</returns>
+    /// <returns>The Product details if found</returns>
     [HttpGet("{id}")]
-    [ProducesResponseType(typeof(ApiResponseWithData<GetCompanyBranchResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResponseWithData<GetProductResponse>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> GetCompanyBranch([FromRoute] Guid id, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetProduct([FromRoute] Guid id, CancellationToken cancellationToken)
     {
-        var request = new GetCompanyBranchRequest { Id = id };
-        var validator = new GetCompanyBranchRequestValidator();
+        var request = new GetProductRequest { Id = id };
+        var validator = new GetProductRequestValidator();
         var validationResult = await validator.ValidateAsync(request, cancellationToken);
 
         if (!validationResult.IsValid)
             return BadRequest(validationResult.Errors);
 
-        var command = _mapper.Map<GetCompanyBranchCommand>(request.Id);
+        var command = _mapper.Map<GetProductCommand>(request.Id);
         var response = await _mediator.Send(command, cancellationToken);
 
-        return Ok(new ApiResponseWithData<GetCompanyBranchResponse>
+        return Ok(new ApiResponseWithData<GetProductResponse>
         {
             Success = true,
             Message = "Sucess",
-            Data = _mapper.Map<GetCompanyBranchResponse>(response)
+            Data = _mapper.Map<GetProductResponse>(response)
         });
     }
 
@@ -100,16 +100,16 @@ public class CompanyBranchController : BaseController
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> DeleteCompanyBranch([FromRoute] Guid id, CancellationToken cancellationToken)
+    public async Task<IActionResult> DeleteProduct([FromRoute] Guid id, CancellationToken cancellationToken)
     {
-        var request = new DeleteCompanyBranchRequest { Id = id };
-        var validator = new DeleteCompanyBranchRequestValidator();
+        var request = new DeleteProductRequest { Id = id };
+        var validator = new DeleteProductRequestValidator();
         var validationResult = await validator.ValidateAsync(request, cancellationToken);
 
         if (!validationResult.IsValid)
             return BadRequest(validationResult.Errors);
 
-        var command = _mapper.Map<DeleteCompanyBranchCommand>(request.Id);
+        var command = _mapper.Map<DeleteProductCommand>(request.Id);
         await _mediator.Send(command, cancellationToken);
 
         return Ok(new ApiResponse
