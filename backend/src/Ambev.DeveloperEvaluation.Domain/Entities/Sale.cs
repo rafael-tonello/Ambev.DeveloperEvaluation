@@ -14,7 +14,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
 
         public double GrossValue { get; set; }
 
-        public double Discount { get; set; }
+        public double TotalDiscount { get; set; }
 
         public double FinalValue { get; set; }
 

@@ -18,6 +18,8 @@ public class DefaultContext : DbContext
 
     public DbSet<Sale> Sales { get; set; }
 
+    public DbSet<SaleProd> SaleProds { get; set; }
+
     public DefaultContext(DbContextOptions<DefaultContext> options) : base(options)
     {
     }
