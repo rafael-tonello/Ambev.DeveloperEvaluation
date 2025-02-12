@@ -22,9 +22,4 @@ public class GetCompanyBranchResponse
     /// </summary>
     public string Address { get; set; } = string.Empty;
 
-    /// <summary>
-    /// The user's phone number
-    /// </summary>
-    public string Phone { get; set; } = string.Empty;
-
 }

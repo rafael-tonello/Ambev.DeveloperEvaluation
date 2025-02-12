@@ -20,11 +20,7 @@ public class GetProductResponse
     /// <summary>
     /// The user's address
     /// </summary>
-    public string Address { get; set; } = string.Empty;
+    public double Price { get; set; }
 
-    /// <summary>
-    /// The user's phone number
-    /// </summary>
-    public string Phone { get; set; } = string.Empty;
 
 }

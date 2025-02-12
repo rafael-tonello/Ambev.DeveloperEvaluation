@@ -12,7 +12,7 @@ using Ambev.DeveloperEvaluation.Application.Product.Delete;
 namespace Ambev.DeveloperEvaluation.WebApi.Features.Product;
 
 /// <summary>
-/// Controller for managing company branches operations
+/// Controller for managing Product operations
 /// </summary>
 [ApiController]
 [Route("api/[controller]")]
@@ -33,7 +33,7 @@ public class ProductController : BaseController
     }
 
     /// <summary>
-    /// Creates a new Compan yBranch
+    /// Creates a new Product
     /// </summary>
     /// <param name="request">The Product creation request</param>
     /// <param name="cancellationToken">Cancellation token</param>
@@ -61,7 +61,7 @@ public class ProductController : BaseController
     }
 
     /// <summary>
-    /// Retrieves a company branch by their ID
+    /// Retrieves a product by their ID
     /// </summary>
     /// <param name="id">The unique identifier of the Product</param>
     /// <param name="cancellationToken">Cancellation token</param>
@@ -91,11 +91,11 @@ public class ProductController : BaseController
     }
 
     /// <summary>
-    /// Deletes a company branch by their ID
+    /// Deletes a product by their ID
     /// </summary>
-    /// <param name="id">The unique identifier of the company branch to delete</param>
+    /// <param name="id">The unique identifier of the product to delete</param>
     /// <param name="cancellationToken">Cancellation token</param>
-    /// <returns>Success response if the company branch was deleted</returns>
+    /// <returns>Success response if the product was deleted</returns>
     [HttpDelete("{id}")]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
