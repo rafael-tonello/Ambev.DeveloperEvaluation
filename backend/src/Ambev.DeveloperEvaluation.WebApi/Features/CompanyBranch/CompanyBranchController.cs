@@ -8,6 +8,8 @@ using Ambev.DeveloperEvaluation.WebApi.Features.CompanyBranchs.GetCompanyBranch;
 using Ambev.DeveloperEvaluation.Application.CompanyBranch.Get;
 using Ambev.DeveloperEvaluation.WebApi.Features.CompanyBranchs.DeleteCompanyBranch;
 using Ambev.DeveloperEvaluation.Application.CompanyBranch.Delete;
+using Ambev.DeveloperEvaluation.WebApi.Features.CompanyBranchs.ListCompanyBranch;
+using Ambev.DeveloperEvaluation.Application.CompanyBranch.List;
 
 namespace Ambev.DeveloperEvaluation.WebApi.Features.CompanyBranch;
 
@@ -116,6 +118,21 @@ public class CompanyBranchController : BaseController
         {
             Success = true,
             Message = "Sucess",
+        });
+    }
+
+    [HttpGet]
+    [ProducesResponseType(typeof(ApiResponseWithData<List<ListCompanyBranchResponse>>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> ListCustomers(CancellationToken cancellationToken)
+    {
+        var command = new ListCompanyBranchCommand();
+        var response = await _mediator.Send(command, cancellationToken);
+
+        return new JsonResult(new ApiResponseWithData<List<ListCompanyBranchResponse>>
+        {
+            Success = true,
+            Message = "Customers retrieved successfully",
+            Data = _mapper.Map<List<ListCompanyBranchResponse>>(response)
         });
     }
 }

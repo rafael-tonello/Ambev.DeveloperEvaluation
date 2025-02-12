@@ -43,6 +43,11 @@ public class CompanyBranchRepository : ICompanyBranchRepository
         return await _context.CompanyBranches.FirstOrDefaultAsync(o => o.Id == id, cancellationToken);
     }
 
+    public async Task<List<CompanyBranch>> GetAllAsync(CancellationToken cancellationToken = default)
+    {
+        return await _context.CompanyBranches.ToListAsync(cancellationToken);
+    }
+
     public Task<CompanyBranch> UpdateAsync(CompanyBranch branch, CancellationToken cancellationToken = default)
     {
         throw new NotImplementedException();

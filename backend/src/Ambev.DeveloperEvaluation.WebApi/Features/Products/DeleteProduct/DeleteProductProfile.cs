@@ -5,7 +5,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Features.Products.DeleteProduct;
 public class DeleteProductProfile : Profile
 {
     /// <summary>
-    /// Initializes the mappings for Delete Company Branch feature
+    /// Initializes the mappings for Delete Product feature
     /// </summary>
     public DeleteProductProfile()
     {

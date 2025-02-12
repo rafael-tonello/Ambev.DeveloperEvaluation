@@ -47,4 +47,9 @@ public class ProductRepository : IProductRepository
     {
         throw new NotImplementedException();
     }
+
+    async Task<List<Product>> IProductRepository.SearchByName(string name, CancellationToken cancellationToken)
+    {
+        return await _context.Products.Where(i => i.Name.ToUpper().Contains(name.ToUpper())).ToListAsync(cancellationToken);
+    }
 }

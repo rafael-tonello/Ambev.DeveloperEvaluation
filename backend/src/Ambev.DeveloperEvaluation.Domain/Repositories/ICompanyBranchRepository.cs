@@ -13,5 +13,7 @@ public interface ICompanyBranchRepository
 
     Task<CompanyBranch> UpdateAsync(CompanyBranch branch, CancellationToken cancellationToken = default);
 
+    Task<List<CompanyBranch>> GetAllAsync(CancellationToken cancellationToken = default);
+
     Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken = default);
 }

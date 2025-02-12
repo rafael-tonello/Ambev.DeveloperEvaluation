@@ -13,5 +13,7 @@ public interface IProductRepository
 
     Task<Product> UpdateAsync(Product branch, CancellationToken cancellationToken = default);
 
+    Task<List<Product>> SearchByName(string name = "", CancellationToken cancellationToken = default);
+
     Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken = default);
 }

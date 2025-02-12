@@ -13,5 +13,7 @@ public interface ICustomerRepository
 
     Task<Customer> UpdateAsync(Customer branch, CancellationToken cancellationToken = default);
 
+    Task<List<Customer>> SearchByName(string name = "", CancellationToken cancellationToken = default);
+
     Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken = default);
 }
